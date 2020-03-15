@@ -22,13 +22,9 @@ router.post('/api/workouts', (req, res) => {
         res.json(data);
     }).catch(err=>console.log(err))
 })
-router.put('/api/workouts/:id', (req,res) => {
+router.put('/api/workouts/:greg', (req,res)=>{
     console.log(req.body)
-    db.findByIdAndUpdate(req.params.id, {$push: {exercises: req.body}}).then(data => {
-        res.json(data);
-    }).catch(err => {
-        console.log(err);
-    })
+    db.findByIdAndUpdate(req.params.greg, {$push: {exercises: req.body}}).then(data=>res.json(data))
 })
 
 
