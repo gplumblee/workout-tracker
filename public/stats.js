@@ -1,15 +1,9 @@
 // get all workout data from back-end
-
-fetch("/api/workouts/range")
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
+  
+API.getWorkoutsInRange().then(data => {
+  console.log(data)
     populateChart(data);
   });
-
-
-API.getWorkoutsInRange()
 
   function generatePalette() {
     const arr = [
@@ -190,8 +184,9 @@ function duration(data) {
   let durations = [];
 
   data.forEach(workout => {
+    console.log(workout)
     workout.exercises.forEach(exercise => {
-      durations.push(exercise.duration);
+      durations.push(exercise? exercise.duration : 0);
     });
   });
 
@@ -203,7 +198,7 @@ function calculateTotalWeight(data) {
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
-      total.push(exercise.weight);
+      total.push(exercise? exercise.weight : 0);
     });
   });
 
@@ -215,7 +210,7 @@ function workoutNames(data) {
 
   data.forEach(workout => {
     workout.exercises.forEach(exercise => {
-      workouts.push(exercise.name);
+      workouts.push(exercise? exercise.name: '');
     });
   });
   

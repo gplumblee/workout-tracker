@@ -26,6 +26,12 @@ router.put('/api/workouts/:greg', (req,res)=>{
     console.log(req.body)
     db.findByIdAndUpdate(req.params.greg, {$push: {exercises: req.body}}).then(data=>res.json(data))
 })
+router.get('/api/workouts/range', (req, res) => {
+    db.find().then(data => {
+        res.json(data);
+    })
+})
+
 
 
 module.exports = router;
